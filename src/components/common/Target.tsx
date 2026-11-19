@@ -61,17 +61,17 @@ const Target = forwardRef<
       elements = getElementMeasures(rootRef.current, setting.split.mode);
     }
 
-    const lines = calculateSplitLines({
+    return calculateSplitLines({
       mode: setting.split.mode,
       height: setting.split.height,
       overlap: setting.split.overlap,
       totalHeight: rootHeight,
     }, elements);
+  }, [setting.split.height, setting.split.overlap, setting.split.mode, rootHeight]);
 
-    // 通知父组件分页变化
-    onSplitChange?.(lines);
-    return lines;
-  }, [setting.split.height, setting.split.overlap, setting.split.mode, rootHeight, onSplitChange]);
+  useEffect(() => {
+    onSplitChange?.(splitLines);
+  }, [onSplitChange, splitLines]);
 
   const splitLineStyle = useMemo(() => ({
     position: 'absolute',
