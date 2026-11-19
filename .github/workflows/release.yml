@@ -3,6 +3,9 @@ name: Release Obsidian plugin
 on:
   release:
     types: [created]
+  push:
+    tags:
+      - '*'
   workflow_dispatch:
     inputs:
       tag:
@@ -14,6 +17,7 @@ permissions:
 
 env:
   PLUGIN_NAME: obsidian-export-image
+  RELEASE_TAG: ${{ github.event.release.tag_name || github.event.inputs.tag || github.ref_name }}
 
 jobs:
   build:
@@ -22,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.release.tag_name || github.event.inputs.tag }}
+          ref: ${{ env.RELEASE_TAG }}
 
       - uses: actions/setup-node@v4
         with:
@@ -32,6 +36,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Lint
+        run: npm run lint
+
       - name: Build plugin
         run: npm run build
 
@@ -39,14 +49,14 @@ jobs:
         run: |
           mkdir ${{ env.PLUGIN_NAME }}
           cp main.js manifest.json styles.css ${{ env.PLUGIN_NAME }}
-          zip -r ${{ env.PLUGIN_NAME }}-${{ github.event.release.tag_name || github.event.inputs.tag }}.zip ${{ env.PLUGIN_NAME }}
+          zip -r ${{ env.PLUGIN_NAME }}-${{ env.RELEASE_TAG }}.zip ${{ env.PLUGIN_NAME }}
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event.release.tag_name || github.event.inputs.tag }}
+          tag_name: ${{ env.RELEASE_TAG }}
           files: |
             main.js
             manifest.json
             styles.css
-            ${{ env.PLUGIN_NAME }}-${{ github.event.release.tag_name || github.event.inputs.tag }}.zip
+            ${{ env.PLUGIN_NAME }}-${{ env.RELEASE_TAG }}.zip
