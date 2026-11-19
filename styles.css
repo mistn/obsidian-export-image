@@ -25,6 +25,7 @@ If your plugin does not need CSS, delete this file.
 }
 
 .export-image-root pre {
+  max-height: none !important;
   overflow: hidden;
 }
 
