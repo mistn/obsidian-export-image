@@ -182,8 +182,6 @@ async function loadDocumentContent(
     // 增加一个短暂延迟，确保页面渲染完成
     await delay(100);
     
-    console.log("Document content loaded:", el.innerHTML.length > 0);
-    
     return el;
   } catch (error) {
     console.error("Error loading document content:", error);

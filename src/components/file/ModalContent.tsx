@@ -240,12 +240,6 @@ const ModalContent: FC<{
   const [pages, setPages] = useState(1);
   const [scale, setScale] = useState(1);
 
-  // 添加日志检查函数
-  useEffect(() => {
-    console.log("ModalContent rendered, loading state:", isLoading);
-    console.log("markdownEl content:", markdownEl instanceof HTMLElement ? markdownEl.innerHTML.substring(0, 100) + "..." : "Not HTML Element");
-  }, [isLoading, markdownEl]);
-
   const calculateScale = useCallback(() => {
     if (!root.current?.element || !previewOutRef.current) return 1;
     const contentHeight = root.current.element.clientHeight;
