@@ -1,48 +1,40 @@
 import {getMime} from 'src/utils';
-import {jpg, png, webp} from './tiny';
 
-async function tester(image: string) {
-  try {
-    const blob = await (await fetch(image)).blob();
-    const data: ClipboardItem[] = [];
-    data.push(
-      new ClipboardItem({
-        [blob.type]: blob,
-      }),
-    );
-    await navigator.clipboard.write(data);
-    return true;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-}
+const copyCache: Partial<Record<FileFormat, boolean>> = {};
 
-const copyCache: Partial<Record<FileFormat, Promise<boolean>>> = {
-  pdf: Promise.resolve(false),
-};
 const createCache: Partial<Record<FileFormat, boolean>> = {
   pdf: true,
 };
 
 export async function isCopiable(type: FileFormat) {
+  if (type === 'pdf') {
+    return false;
+  }
+
   if (type in copyCache) {
-    return copyCache[type];
+    return copyCache[type]!;
   }
 
-  if (type === 'jpg') {
-    copyCache[type] = tester(jpg);
-    return copyCache[type];
+  const canCopy = typeof navigator !== 'undefined'
+    && typeof navigator.clipboard?.write === 'function'
+    && typeof ClipboardItem !== 'undefined';
+
+  let result = false;
+  if (canCopy) {
+    // Checking support this way avoids writing to the clipboard just to
+    // determine whether the format can be copied.
+    result = typeof ClipboardItem.supports === 'function'
+      ? ClipboardItem.supports(getMime(type))
+      : true;
   }
 
-  if (type === 'webp') {
-    copyCache[type] = tester(webp);
-    return copyCache[type];
+  if (type === 'png0' || type === 'png1') {
+    copyCache.png0 = result;
+    copyCache.png1 = result;
+  } else {
+    copyCache[type] = result;
   }
 
-  const result = tester(png);
-  copyCache.png0 = result;
-  copyCache.png1 = result;
   return result;
 }
 
