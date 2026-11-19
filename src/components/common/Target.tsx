@@ -5,7 +5,7 @@ import React, {
 import { type WatermarkProps, Watermark } from '@pansy/react-watermark';
 import Metadata from './Metadata';
 import { lowerCase } from 'lodash';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { getRemoteImageUrl } from 'src/utils/capture';
 import { calculateSplitLines, getElementMeasures } from 'src/utils/split';
 

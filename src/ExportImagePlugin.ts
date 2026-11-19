@@ -17,7 +17,7 @@ import { SettingRenderer } from './SettingRenderer';
 import exportImage from './components/file/exportImage';
 
 export default class ExportImagePlugin extends Plugin {
-  settings: ISettings;
+  declare settings: ISettings;
 
   async epxortFile(file: TFile) {
     const frontmatter = getMetadata(file, this.app);
