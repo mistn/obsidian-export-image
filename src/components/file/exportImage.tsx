@@ -40,6 +40,10 @@ export default async function (
     div.style.left = '9999px';
     document.body.appendChild(div);
     const root = createRoot(div);
+
+    // 先加载内容，再渲染 Target，确保克隆到已经填充好的 DOM。
+    await loadDocumentContent(app, el, markdown, file, frontmatter, type);
+
     root.render(
       <Target
         isProcessing={true}
@@ -51,9 +55,7 @@ export default async function (
         app={app}
       />,
     );
-    
-    // 先打开模态框，再加载内容
-    await loadDocumentContent(app, el, markdown, file, frontmatter, type);
+    await delay(100);
     
     try {
       await copy(div.querySelector('.export-image-root')!, settings.resolutionMode, settings.format);
