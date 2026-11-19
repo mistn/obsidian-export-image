@@ -353,7 +353,7 @@ const ModalContent: FC<{
         title,
       );
     } catch {
-      new Notice(L.copyFail());
+      new Notice(L.saveFail());
     }
     setProcessing(false);
   }, [root, formData.format, formData.resolutionMode, formData.split, app, title]);
