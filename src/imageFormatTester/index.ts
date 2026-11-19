@@ -50,7 +50,9 @@ export async function isCreatable(type: FileFormat): Promise<boolean> {
   return new Promise(resolve => {
     try {
       canvas.toBlob(blob => {
-        const available = blob !== null;
+        // Unsupported types fall back to PNG in some browsers, so compare the
+        // actual blob type instead of only checking for a non-null result.
+        const available = blob !== null && blob.type === mime;
         if (type.includes('png')) {
           createCache.png0 = available;
           createCache.png1 = available;
