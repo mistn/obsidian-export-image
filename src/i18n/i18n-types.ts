@@ -136,6 +136,10 @@ type RootTranslation = {
 	selectAll: string
 	setting: {
 		/**
+		 * B​o​d​y​ ​f​o​n​t​ ​s​i​z​e
+		 */
+		bodyFontSize: string
+		/**
 		 * E​x​p​o​r​t​ ​I​m​a​g​e
 		 */
 		title: string
@@ -589,6 +593,10 @@ export type TranslationFunctions = {
 	 */
 	selectAll: () => LocalizedString
 	setting: {
+		/**
+		 * Body font size
+		 */
+		bodyFontSize: () => LocalizedString
 		/**
 		 * Export Image
 		 */

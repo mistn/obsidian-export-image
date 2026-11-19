@@ -29,6 +29,7 @@ const pl = {
   noMarkdownFile: 'Brak plików markdown w bieżącym katalogu',
   selectAll: 'Zaznacz wszystko',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Eksport obrazu',
     imageWidth: {
       label: 'Domyślna szerokość eksportowanego obrazu',

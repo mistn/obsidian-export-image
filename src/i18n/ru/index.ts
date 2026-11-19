@@ -29,6 +29,7 @@ const ru = {
   noMarkdownFile: 'В текущем каталоге нет файлов markdown',
   selectAll: 'Выбрать все',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Экспорт изображения',
     imageWidth: {
       label: 'Стандартная ширина экспортируемого изображения',

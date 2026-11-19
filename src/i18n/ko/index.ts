@@ -31,6 +31,7 @@ const ko = {
   noMarkdownFile: '현재 디렉토리에 마크다운 파일이 없습니다',
   selectAll: '전체 선택',
   setting: {
+    bodyFontSize: 'Body font size',
     title: '이미지로 내보내기',
     imageWidth: {
       label: '내보낼 이미지의 기본 너비',

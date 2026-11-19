@@ -28,6 +28,7 @@ const fi = {
   noMarkdownFile: 'Nykyisessä hakemistossa ei ole markdown-tiedostoja',
   selectAll: 'Valitse kaikki',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Vie kuva',
     imageWidth: {
       label: 'Oletus vietävän kuvan leveys',

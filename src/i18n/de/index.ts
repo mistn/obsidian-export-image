@@ -30,6 +30,7 @@ const de = {
   noMarkdownFile: 'Keine Markdown-Dateien im aktuellen Verzeichnis',
   selectAll: 'Alles auswählen',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Bild exportieren',
     imageWidth: {
       label: 'Standardmäßige exportierte Bildbreite',

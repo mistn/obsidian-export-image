@@ -258,7 +258,13 @@ const Target = forwardRef<
                   </div>
                 </div>
               )}
-            <div ref={contentRef} className={`export-image-split-${setting.split.mode} export-image-markdown`}></div>
+            <div
+              ref={contentRef}
+              className={`export-image-split-${setting.split.mode} export-image-markdown`}
+              style={{
+                fontSize: setting.bodyFontSize ? `${setting.bodyFontSize}px` : undefined,
+              }}
+            ></div>
           </div>
         </Watermark>
         {setting.authorInfo.show

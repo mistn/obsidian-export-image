@@ -29,6 +29,7 @@ const cs = {
   noMarkdownFile: 'V aktuálním adresáři nejsou žádné soubory markdown',
   selectAll: 'Vybrat vše',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Exportovat obrázek',
     imageWidth: {
       label: 'Výchozí šířka exportovaného obrázku',

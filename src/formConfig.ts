@@ -30,6 +30,12 @@ export const createSettingConfig = async (app: App): Promise<SettingItem[]> => {
       placeholder: '640',
     },
     {
+      id: 'bodyFontSize',
+      label: L.setting.bodyFontSize(),
+      type: 'number',
+      placeholder: '18',
+    },
+    {
       id: 'padding.top',
       label: L.setting.padding.top(),
       description: L.setting.padding.description(),

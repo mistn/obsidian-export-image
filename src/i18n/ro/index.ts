@@ -29,6 +29,7 @@ const ro = {
   noMarkdownFile: 'Niciun fișier markdown în directorul curent',
   selectAll: 'Selectează tot',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Exportă imagine',
     imageWidth: {
       label: 'Lățimea implicită a imaginii exportate',

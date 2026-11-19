@@ -29,6 +29,7 @@ const hu = {
   noMarkdownFile: 'Nincsenek markdown fájlok az aktuális könyvtárban',
   selectAll: 'Összes kiválasztása',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Képként exportálás',
     imageWidth: {
       label: 'Alapértelmezett exportált képszelesség',

@@ -28,6 +28,7 @@ const zh = {
   noMarkdownFile: '当前目录下没有 markdown 文件',
   selectAll: '全选',
   setting: {
+    bodyFontSize: '正文字号',
     title: '导出图片',
     imageWidth: {
       label: '导出图片的默认宽度',

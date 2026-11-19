@@ -28,6 +28,7 @@ const ms = {
   noMarkdownFile: 'Tiada fail markdown dalam direktori semasa',
   selectAll: 'Pilih Semua',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Eksport Imej',
     imageWidth: {
       label: 'Lebar Imej Eksport Lalai',

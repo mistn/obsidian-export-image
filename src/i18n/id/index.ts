@@ -28,6 +28,7 @@ const id = {
   noMarkdownFile: 'Tidak ada berkas markdown di direktori saat ini',
   selectAll: 'Pilih Semua',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Ekspor Gambar',
     imageWidth: {
       label: 'Lebar gambar ekspor default',

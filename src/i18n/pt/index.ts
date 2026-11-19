@@ -30,6 +30,7 @@ const pt = {
   noMarkdownFile: 'Nenhum arquivo markdown no diretório atual',
   selectAll: 'Selecionar Tudo',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Exportar Imagem',
     imageWidth: {
       label: 'Largura padrão da imagem exportada',

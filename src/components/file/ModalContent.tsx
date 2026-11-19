@@ -22,6 +22,11 @@ const createFormSchema = (): FormSchema<ISettings> => [
     type: 'number',
   },
   {
+    label: L.setting.bodyFontSize(),
+    path: 'bodyFontSize',
+    type: 'number',
+  },
+  {
     path: 'padding.top',
     label: L.setting.padding.top(),
     desc: L.setting.padding.description(),

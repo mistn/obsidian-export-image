@@ -28,6 +28,7 @@ const es = {
   noMarkdownFile: 'No hay archivos markdown en el directorio actual',
   selectAll: 'Seleccionar todo',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Exportar como imagen',
     imageWidth: {
       label: 'Ancho de imagen exportada por defecto',

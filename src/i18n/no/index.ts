@@ -28,6 +28,7 @@ const no = {
   noMarkdownFile: 'Ingen markdown-filer i gjeldende katalog',
   selectAll: 'Velg alle',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Eksporter bilde',
     imageWidth: {
       label: 'Standard eksportbredde for bilde',

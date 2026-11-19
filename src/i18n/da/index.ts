@@ -30,6 +30,7 @@ const da = {
   noMarkdownFile: 'Ingen markdown filer i den aktuelle mappe',
   selectAll: 'Vælg alle',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Eksportér billede',
     imageWidth: {
       label: 'Standard eksportbilledbredde',

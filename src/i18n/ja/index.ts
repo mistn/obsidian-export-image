@@ -28,6 +28,7 @@ const ja = {
   noMarkdownFile: '現在のディレクトリにマークダウンファイルがありません',
   selectAll: 'すべて選択',
   setting: {
+    bodyFontSize: 'Body font size',
     title: '画像をエクスポート',
     imageWidth: {
       label: 'エクスポートされる画像のデフォルト幅',

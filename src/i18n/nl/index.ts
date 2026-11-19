@@ -30,6 +30,7 @@ const nl = {
   noMarkdownFile: 'Geen markdown bestanden in de huidige map',
   selectAll: 'Alles selecteren',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Afbeelding exporteren',
     imageWidth: {
       label: 'Standaard geëxporteerde afbeeldingsbreedte',

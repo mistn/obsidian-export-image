@@ -30,6 +30,7 @@ const fr = {
   noMarkdownFile: 'Aucun fichier markdown dans le répertoire actuel',
   selectAll: 'Tout sélectionner',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Exporter en image',
     imageWidth: {
       label: 'Largeur d\'image exportée par défaut',

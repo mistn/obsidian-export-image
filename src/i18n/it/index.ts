@@ -28,6 +28,7 @@ const it = {
   noMarkdownFile: 'Nessun file markdown nella directory corrente',
   selectAll: 'Seleziona tutto',
   setting: {
+    bodyFontSize: 'Body font size',
     title: 'Esporta immagine',
     padding: {
       title: 'Margine immagine',
