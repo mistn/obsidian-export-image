@@ -95,6 +95,9 @@ const es = {
       remark: 'Texto extra',
       align: 'Alineación',
       removeAvatar: 'Eliminar avatar',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Marca de agua',

@@ -20,6 +20,9 @@ declare type ISettings = {
     name?: string;
     remark?: string;
     avatar?: string;
+    avatarSize?: number;
+    nameFontSize?: number;
+    paddingTop?: number;
     align?: 'left' | 'center' | 'right';
     position?: 'top' | 'bottom';
   };

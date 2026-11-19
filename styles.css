@@ -100,11 +100,12 @@ If your plugin does not need CSS, delete this file.
 .export-image-root .user-info-container {
   display: flex;
   padding: 16px 32px;
-  alignitems: center;
+  align-items: center;
 }
 .user-info-avatar {
   width: 36px;
   height: 36px;
+  flex: 0 0 auto;
   border-radius: 50%;
   border: 1px solid var(--background-modifier-border);
   background-size: cover;

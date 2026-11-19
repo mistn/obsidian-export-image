@@ -152,6 +152,27 @@ export const createSettingConfig = async (app: App): Promise<SettingItem[]> => {
       show: (settings) => settings.authorInfo.show,
     },
     {
+      id: 'authorInfo.avatarSize',
+      label: L.setting.userInfo.avatarSize(),
+      type: 'number',
+      placeholder: '36',
+      show: (settings) => settings.authorInfo.show,
+    },
+    {
+      id: 'authorInfo.paddingTop',
+      label: L.setting.userInfo.paddingTop(),
+      type: 'number',
+      placeholder: '16',
+      show: (settings) => settings.authorInfo.show,
+    },
+    {
+      id: 'authorInfo.nameFontSize',
+      label: L.setting.userInfo.nameFontSize(),
+      type: 'number',
+      placeholder: '16',
+      show: (settings) => settings.authorInfo.show,
+    },
+    {
       id: 'authorInfo.position',
       label: L.setting.userInfo.position(),
       type: 'dropdown',

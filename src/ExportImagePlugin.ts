@@ -168,7 +168,20 @@ export default class ExportImagePlugin extends Plugin {
   }
 
   async loadSettings() {
-    this.settings = { ...DEFAULT_SETTINGS, ...(await this.loadData() as ISettings) };
+    const saved = (await this.loadData()) as Partial<ISettings> | null;
+    this.settings = {
+      ...DEFAULT_SETTINGS,
+      ...saved,
+      padding: { ...DEFAULT_SETTINGS.padding, ...saved?.padding },
+      authorInfo: { ...DEFAULT_SETTINGS.authorInfo, ...saved?.authorInfo },
+      watermark: {
+        ...DEFAULT_SETTINGS.watermark,
+        ...saved?.watermark,
+        text: { ...DEFAULT_SETTINGS.watermark.text, ...saved?.watermark?.text },
+        image: { ...DEFAULT_SETTINGS.watermark.image, ...saved?.watermark?.image },
+      },
+      split: { ...DEFAULT_SETTINGS.split, ...saved?.split },
+    };
   }
 
   async saveSettings() {

@@ -92,6 +92,9 @@ const hu = {
       remark: 'További szöveg',
       align: 'Igazítás',
       removeAvatar: 'Avatar eltávolítása',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Vízjel',

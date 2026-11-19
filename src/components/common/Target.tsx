@@ -271,6 +271,7 @@ const Target = forwardRef<
                   : 'borderTop']: '1px solid var(--background-modifier-border)',
 
                 justifyContent: alignMap[setting.authorInfo.align || 'right'],
+                padding: `${setting.authorInfo.paddingTop ?? 16}px 32px 16px`,
                 background:
                   setting.format === 'png1'
                     ? 'unset'
@@ -281,13 +282,20 @@ const Target = forwardRef<
                 <div
                   className='user-info-avatar'
                   style={{
+                    width: `${setting.authorInfo.avatarSize ?? 36}px`,
+                    height: `${setting.authorInfo.avatarSize ?? 36}px`,
                     backgroundImage: `url(${setting.authorInfo.avatar})`,
                   }}
                 ></div>
               )}
               {setting.authorInfo.name && (
                 <div>
-                  <div className='user-info-name'>{setting.authorInfo.name}</div>
+                  <div
+                    className='user-info-name'
+                    style={{ fontSize: `${setting.authorInfo.nameFontSize ?? 16}px` }}
+                  >
+                    {setting.authorInfo.name}
+                  </div>
                   {setting.authorInfo.remark && (
                     <div className='user-info-remark'>
                       {setting.authorInfo.remark}

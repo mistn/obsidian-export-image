@@ -92,6 +92,9 @@ const cs = {
       remark: 'Dodatečný text',
       align: 'Zarovnat',
       removeAvatar: 'Odstranit avatar',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Vodoznak',

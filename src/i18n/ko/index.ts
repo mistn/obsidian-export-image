@@ -94,6 +94,9 @@ const ko = {
       remark: '추가 텍스트',
       align: '정렬',
       removeAvatar: '아바타 제거',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: '워터마크',

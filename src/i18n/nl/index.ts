@@ -93,6 +93,9 @@ const nl = {
       remark: 'Extra tekst',
       align: 'Uitlijnen',
       removeAvatar: 'Avatar verwijderen',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Watermerk',

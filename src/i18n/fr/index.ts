@@ -100,6 +100,9 @@ const fr = {
       remark: 'Texte supplémentaire',
       align: 'Alignement',
       removeAvatar: 'Supprimer l\'avatar',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Filigrane',

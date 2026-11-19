@@ -94,6 +94,9 @@ const ru = {
       remark: 'Дополнительный текст',
       align: 'Выровнять',
       removeAvatar: 'Удалить аватар',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Водяной знак',

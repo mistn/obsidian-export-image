@@ -91,6 +91,9 @@ const ja = {
       remark: '追加テキスト',
       align: '配置',
       removeAvatar: 'アバターを削除',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     quickExportSelection: {
       label: '選択した内容を迅速にエクスポート',

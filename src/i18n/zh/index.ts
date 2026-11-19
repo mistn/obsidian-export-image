@@ -98,6 +98,9 @@ const zh = {
       remark: '额外文案',
       align: '对齐方式',
       removeAvatar: '移除头像',
+      avatarSize: '头像大小',
+      paddingTop: '作者区上边距',
+      nameFontSize: '作者名字号',
     },
     watermark: {
       title: '水印',

@@ -118,6 +118,24 @@ const createFormSchema = (): FormSchema<ISettings> => [
     when: { flag: true, path: 'authorInfo.show' },
   },
   {
+    label: L.setting.userInfo.avatarSize(),
+    path: 'authorInfo.avatarSize',
+    type: 'number',
+    when: { flag: true, path: 'authorInfo.show' },
+  },
+  {
+    label: L.setting.userInfo.paddingTop(),
+    path: 'authorInfo.paddingTop',
+    type: 'number',
+    when: { flag: true, path: 'authorInfo.show' },
+  },
+  {
+    label: L.setting.userInfo.nameFontSize(),
+    path: 'authorInfo.nameFontSize',
+    type: 'number',
+    when: { flag: true, path: 'authorInfo.show' },
+  },
+  {
     label: L.setting.userInfo.align(),
     path: 'authorInfo.align',
     type: 'select',

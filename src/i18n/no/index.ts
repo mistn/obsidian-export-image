@@ -92,6 +92,9 @@ const no = {
       remark: 'Ekstra tekst',
       align: 'Justering',
       removeAvatar: 'Fjern avatar',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Vannmerke',

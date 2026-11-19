@@ -92,6 +92,9 @@ const pl = {
       remark: 'Dodatkowy tekst',
       align: 'Wyrównaj',
       removeAvatar: 'Usuń awatar',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Znak wodny',

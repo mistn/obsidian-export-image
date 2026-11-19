@@ -91,6 +91,9 @@ const ms = {
       remark: 'Teks tambahan',
       align: 'Menyelaraskan',
       removeAvatar: 'Buang Avatar',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Watermark',

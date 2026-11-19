@@ -91,6 +91,9 @@ const id = {
       remark: 'Teks tambahan',
       align: 'Menyelaraskan',
       removeAvatar: 'Hapus avatar',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Watermark',

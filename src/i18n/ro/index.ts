@@ -94,6 +94,9 @@ const ro = {
       remark: 'Text suplimentar',
       align: 'Aliniați',
       removeAvatar: 'Elimină avatarul',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Filigran',

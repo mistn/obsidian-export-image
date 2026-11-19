@@ -93,6 +93,9 @@ const da = {
       remark: 'Ekstra tekst',
       align: 'Justér',
       removeAvatar: 'Fjern avatar',
+      avatarSize: 'Avatar size',
+      paddingTop: 'Author area top padding',
+      nameFontSize: 'Author name font size',
     },
     watermark: {
       title: 'Vandmærke',

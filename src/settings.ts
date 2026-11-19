@@ -20,6 +20,9 @@ export const DEFAULT_SETTINGS: ISettings = {
     show: false,
     align: 'right',
     position: 'bottom',
+    avatarSize: 36,
+    nameFontSize: 16,
+    paddingTop: 16,
   },
   watermark: {
     enable: false,
