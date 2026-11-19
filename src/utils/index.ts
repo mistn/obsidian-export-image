@@ -81,6 +81,42 @@ export async function delay(time: number) {
   });
 }
 
+/**
+ * Wait until async code block processors finish changing the DOM.
+ * Resolves after the element has been quiet for `quietMs`, with a hard cap.
+ */
+export function waitForDomToSettle(
+  element: HTMLElement,
+  quietMs = 500,
+  timeoutMs = 5000,
+): Promise<void> {
+  return new Promise(resolve => {
+    let quietTimer: ReturnType<typeof setTimeout>;
+    let timeoutTimer: ReturnType<typeof setTimeout>;
+
+    const finish = () => {
+      observer.disconnect();
+      clearTimeout(quietTimer);
+      clearTimeout(timeoutTimer);
+      resolve();
+    };
+
+    const observer = new MutationObserver(() => {
+      clearTimeout(quietTimer);
+      quietTimer = setTimeout(finish, quietMs);
+    });
+
+    observer.observe(element, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+    });
+
+    quietTimer = setTimeout(finish, quietMs);
+    timeoutTimer = setTimeout(finish, timeoutMs);
+  });
+}
+
 export function getMime(format: FileFormat) {
   return `image/${format.includes('png') ? 'png' : (format === 'jpg' ? 'jpeg' : format)}`;
 }

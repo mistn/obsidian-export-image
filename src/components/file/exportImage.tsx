@@ -16,7 +16,7 @@ import L from '../../L';
 import ModalContent from './ModalContent';
 import { preprocessMarkdown } from 'src/utils/preprocessMarkdown';
 import Target from '../common/Target';
-import { delay } from 'src/utils';
+import { delay, waitForDomToSettle } from 'src/utils';
 import { copy } from 'src/utils/capture';
 
 export default async function (
@@ -129,6 +129,9 @@ async function loadDocumentContent(
         file.path,
         new MarkdownRenderChild(el),
       );
+      if (el.querySelector('[class*="block-language-"]')) {
+        await waitForDomToSettle(el);
+      }
       await delay(100);
       return el;
     }

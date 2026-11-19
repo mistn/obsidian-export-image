@@ -10,7 +10,7 @@ import {
 import React from 'react';
 import { type Root, createRoot } from 'react-dom/client';
 import Target, { type TargetRef } from 'src/components/common/Target';
-import { delay, getMetadata } from '.';
+import { delay, getMetadata, waitForDomToSettle } from '.';
 
 let root: Root | undefined;
 
@@ -29,15 +29,22 @@ export default async function makeHTML(
 
   const markdown = await app.vault.cachedRead(file);
   const element = document.createElement('div');
+  const contentEl = element.createDiv();
   await MarkdownRenderer.render(
     app,
     markdown,
-    element.createDiv(),
+    contentEl,
     file.path,
     app.workspace.getActiveViewOfType(MarkdownView)
     || app.workspace.activeLeaf?.view
     || new MarkdownRenderChild(element),
   );
+
+  // Give async code block processors (Dataview, SQLSeal, etc.) time to fill
+  // their placeholders before the content is cloned for capture.
+  if (contentEl.querySelector('[class*="block-language-"]')) {
+    await waitForDomToSettle(contentEl);
+  }
 
   /* @ts-ignore */
   const metadataMap: Record<string, { type: MetadataType }> = app.metadataCache.getAllPropertyInfos();
