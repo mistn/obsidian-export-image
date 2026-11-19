@@ -58,7 +58,7 @@ export async function save(
   const blob: Blob = await getBlob(
     el,
     resolutionMode,
-    getMime(format),
+    format === 'pdf' ? 'image/jpeg' : getMime(format),
   );
   const filename = `${title.replaceAll(/\s+/g, '_')}.${format.replace(/\d$/, '')}`;
   switch (format) {
