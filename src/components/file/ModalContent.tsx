@@ -269,7 +269,7 @@ const ModalContent: FC<{
     return () => {
       observer.disconnect();
     };
-  }, [root.current?.element, processing]);
+  }, [root.current?.element, processing, isLoading]);
 
   const handleSplitChange = useCallback((positions: number[]) => {
     setPages(positions.length + 1);
