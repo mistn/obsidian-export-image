@@ -1,33 +1,52 @@
 name: Release Obsidian plugin
 
 on:
-  push:
-    tags:
-      - "*"
+  release:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing tag to build and attach the assets to
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  PLUGIN_NAME: obsidian-export-image
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4.1.0
+      - uses: actions/checkout@v4
         with:
-          node-version: "22.x"
+          ref: ${{ github.event.release.tag_name || github.event.inputs.tag }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build plugin
-        run: |
-          npm install
-          npm run build
+        run: npm run build
 
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Package plugin
         run: |
-          tag="${GITHUB_REF#refs/tags/}"
+          mkdir ${{ env.PLUGIN_NAME }}
+          cp main.js manifest.json styles.css ${{ env.PLUGIN_NAME }}
+          zip -r ${{ env.PLUGIN_NAME }}-${{ github.event.release.tag_name || github.event.inputs.tag }}.zip ${{ env.PLUGIN_NAME }}
 
-          gh release create "$tag" \
-            --title="$tag" \
-            main.js manifest.json styles.css
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name || github.event.inputs.tag }}
+          files: |
+            main.js
+            manifest.json
+            styles.css
+            ${{ env.PLUGIN_NAME }}-${{ github.event.release.tag_name || github.event.inputs.tag }}.zip
