@@ -48,7 +48,7 @@ jobs:
       - name: Package plugin
         run: |
           mkdir ${{ env.PLUGIN_NAME }}
-          cp main.js manifest.json styles.css ${{ env.PLUGIN_NAME }}
+          cp main.js manifest.json styles.css LICENSE main.js.LEGAL.txt ${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}-${{ env.RELEASE_TAG }}.zip ${{ env.PLUGIN_NAME }}
 
       - name: Resolve release notes
@@ -68,4 +68,6 @@ jobs:
             main.js
             manifest.json
             styles.css
+            LICENSE
+            main.js.LEGAL.txt
             ${{ env.PLUGIN_NAME }}-${{ env.RELEASE_TAG }}.zip
