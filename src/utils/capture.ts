@@ -131,26 +131,10 @@ export async function saveMultipleFiles(
 ) {
   let finished = 0;
   const { format, resolutionMode, split } = settings;
-  const blobs: { blob: Blob; filename: string }[] = [];
 
   for (const file of files) {
-    const el = await makeHTML(file, settings, app, containner) as HTMLElement;
+    const target = await makeHTML(file, settings, app, containner);
     await delay(20);
-
-    const target = {
-      element: el,
-      contentElement: el,
-      setClip: (startY: number, height: number) => {
-        el.style.height = `${height}px`;
-        el.style.overflow = 'hidden';
-        el.style.transform = `translateY(-${startY}px)`;
-      },
-      resetClip: () => {
-        el.style.height = '';
-        el.style.overflow = '';
-        el.style.transform = '';
-      },
-    };
 
     await saveAll(
       target,

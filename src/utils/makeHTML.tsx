@@ -9,7 +9,7 @@ import {
 } from 'obsidian';
 import React from 'react';
 import { type Root, createRoot } from 'react-dom/client';
-import Target from 'src/components/common/Target';
+import Target, { type TargetRef } from 'src/components/common/Target';
 import { delay, getMetadata } from '.';
 
 let root: Root | undefined;
@@ -20,7 +20,7 @@ export default async function makeHTML(
   settings: ISettings,
   app: App,
   container: HTMLElement,
-) {
+): Promise<TargetRef> {
   if (root) {
     root.unmount();
     await delay(20);
@@ -57,5 +57,27 @@ export default async function makeHTML(
     />,
   );
   await delay(100);
-  return (element).closest('.export-image-root') || element;
+
+  const createTarget = (clip: HTMLElement, content: HTMLElement): TargetRef => ({
+    element: clip,
+    contentElement: content,
+    setClip: (startY: number, height: number) => {
+      clip.style.height = `${height}px`;
+      clip.style.overflow = 'hidden';
+      content.style.transform = `translateY(-${startY}px)`;
+    },
+    resetClip: () => {
+      clip.style.height = '';
+      clip.style.overflow = '';
+      content.style.transform = '';
+    },
+  });
+
+  const clip = container.firstElementChild as HTMLElement | null;
+  const content = container.querySelector<HTMLElement>('.export-image-root');
+  if (clip && content) {
+    return createTarget(clip, content);
+  }
+
+  return createTarget(element, element);
 }
