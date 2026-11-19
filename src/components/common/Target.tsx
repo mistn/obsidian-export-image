@@ -97,6 +97,20 @@ const Target = forwardRef<
         contentRef.current?.append(child.cloneNode(true));
       }
     });
+
+    // cloneNode does not copy form state, so checked task list items would
+    // otherwise be exported as unchecked.
+    if (markdownEl instanceof HTMLElement) {
+      const sourceInputs = markdownEl.querySelectorAll('input');
+      const clonedInputs = contentRef.current.querySelectorAll('input');
+      sourceInputs.forEach((input, index) => {
+        const cloned = clonedInputs[index];
+        if (cloned instanceof HTMLInputElement) {
+          cloned.checked = input.checked;
+          cloned.indeterminate = input.indeterminate;
+        }
+      });
+    }
   }, [markdownEl]);
 
   useImperativeHandle(ref, () => ({
