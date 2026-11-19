@@ -191,6 +191,9 @@ export async function saveAll(
       overlap: splitOverlap,
       totalHeight,
     }, elements);
+    if (splitPositions.length === 0) {
+      splitPositions.push({ startY: 0, height: Math.max(totalHeight, 1) });
+    }
 
     if (format === 'pdf') {
       // PDF 格式：创建多页 PDF
