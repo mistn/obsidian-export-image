@@ -65,10 +65,10 @@ const createFormSchema = (): FormSchema<ISettings> => [
     desc: L.setting.resolutionMode.description(),
     type: 'select',
     options: [
-      { text: "1x", value: '1x' },
-      { text: "2x", value: '2x' },
-      { text: "3x", value: '3x' },
-      { text: "4x", value: '4x' },
+      { text: '1x', value: '1x' },
+      { text: '2x', value: '2x' },
+      { text: '3x', value: '3x' },
+      { text: '4x', value: '4x' },
     ],
   },
   {
@@ -244,16 +244,16 @@ const ModalContent: FC<{
         setIsLoading(false);
       }, 100);
     }
-    
+
     // 监听内容加载完成事件
     const handleContentLoaded = () => {
       setIsLoading(false);
     };
-    
-    window.document.addEventListener("export-image-content-loaded", handleContentLoaded);
-    
+
+    globalThis.document.addEventListener('export-image-content-loaded', handleContentLoaded);
+
     return () => {
-      window.document.removeEventListener("export-image-content-loaded", handleContentLoaded);
+      globalThis.document.removeEventListener('export-image-content-loaded', handleContentLoaded);
     };
   }, [markdownEl]);
 

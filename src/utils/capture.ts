@@ -126,7 +126,7 @@ export async function saveMultipleFiles(
   settings: ISettings,
   onProgress: (finished: number) => void,
   app: App,
-  folderName: string,
+  _folderName: string,
   containner: HTMLDivElement,
 ) {
   let finished = 0;
@@ -153,7 +153,7 @@ export async function saveMultipleFiles(
 }
 
 export async function getRemoteImageUrl(url?: string) {
-  if (!url || !url.startsWith('http')) {
+  if (!url?.startsWith('http')) {
     return url;
   }
   try {
@@ -236,7 +236,7 @@ export async function saveAll(
       // 其他图片格式：分别保存每个部分
       const ext = format.replace(/\d$/, '');
       const zip = new JSZip();
-      const blobs: { blob: Blob; filename: string }[] = [];
+      const blobs: Array<{ blob: Blob; filename: string }> = [];
 
       for (let i = 0; i < splitPositions.length; i++) {
         const { startY, height } = splitPositions[i];

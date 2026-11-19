@@ -1,12 +1,12 @@
 import {
-  App,
+  type App,
   Setting,
   setIcon,
   Modal,
 } from 'obsidian';
 import type { SettingItem } from './formConfig';
 import L from './L';
-import { delay, fileToBase64 } from './utils';
+import { fileToBase64 } from './utils';
 import ImageSelectModal from './components/common/imageSelectModal';
 import { renderPreview } from './settingPreview';
 import type ExportImagePlugin from './ExportImagePlugin';
@@ -23,20 +23,20 @@ export class SettingRenderer {
   }
 
   private getSettingValue(path: string): any {
-    return path.split('.').reduce((obj: any, key: string) => {
-      return obj && typeof obj === 'object' ? obj[key] : undefined;
-    }, this.plugin.settings);
+    return path.split('.').reduce((obj: any, key: string) =>
+      obj && typeof obj === 'object' ? obj[key] : undefined, this.plugin.settings);
   }
 
   private async updateSetting(path: string, value: any) {
     const keys = path.split('.');
     const lastKey = keys.pop()!;
-    const target = keys.reduce((obj: any, key: string) => {
+    const target = keys.reduce<any>((obj, key) => {
       if (!(key in obj)) {
         obj[key] = {};
       }
+
       return obj[key];
-    }, this.plugin.settings as any);
+    }, this.plugin.settings);
 
     target[lastKey] = value;
     await this.plugin.saveSettings();
@@ -224,7 +224,6 @@ export class SettingRenderer {
           });
 
           urlButton.onclick = async () => {
-            const currentValue = this.getSettingValue(item.id) || '';
             const modal = new Modal(this.app);
             modal.titleEl.setText(L.imageUrl());
 
@@ -285,4 +284,4 @@ export class SettingRenderer {
     const render = await renderPreview(previewEl, this.app);
     render(this.plugin.settings);
   }
-} 
+}

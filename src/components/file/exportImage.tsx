@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
 import {
   type App,
@@ -30,7 +28,7 @@ export default async function (
   // 创建元素和模态框先
   const el = document.createElement('div');
   const skipConfig = type === 'selection' && settings.quickExportSelection;
-  
+
   // 如果是快速导出，创建隐藏的div元素进行处理
   if (skipConfig) {
     const div = createDiv();
@@ -56,7 +54,7 @@ export default async function (
       />,
     );
     await delay(100);
-    
+
     try {
       await copy(div.querySelector('.export-image-root')!, settings.resolutionMode, settings.format);
     } catch (e) {
@@ -66,8 +64,7 @@ export default async function (
       root.unmount();
       div.remove();
     }
-  }
-  else {
+  } else {
     // 先创建模态框并显示加载状态
     const modal = new Modal(app);
     modal.setTitle(L.imageExportPreview());
@@ -75,10 +72,10 @@ export default async function (
     modal.modalEl.style.maxWidth = '1500px';
     modal.open();
     const root = createRoot(modal.contentEl);
-    
+
     /* @ts-ignore */
     const metadataMap: Record<string, { type: MetadataType }> = app.metadataCache.getAllPropertyInfos();
-    
+
     // 渲染组件，组件内部会处理loading状态
     root.render(
       <ModalContent
@@ -90,14 +87,14 @@ export default async function (
         app={app}
       />,
     );
-    
+
     // 异步加载文档内容
     await loadDocumentContent(app, el, markdown, file, frontmatter, type);
-    
+
     // 发布一个自定义事件，通知内容已加载完成
-    const loadedEvent = new CustomEvent("export-image-content-loaded");
-    window.document.dispatchEvent(loadedEvent);
-    
+    const loadedEvent = new CustomEvent('export-image-content-loaded');
+    globalThis.document.dispatchEvent(loadedEvent);
+
     modal.onClose = () => {
       root?.unmount();
     };
@@ -148,17 +145,17 @@ async function loadDocumentContent(
       view.editor.scrollTo(0, 0);
 
       const tempDiv = document.createElement('div');
-      tempDiv.className = "markdown-source-view mod-cm6 is-live-preview";
-      
+      tempDiv.className = 'markdown-source-view mod-cm6 is-live-preview';
+
       // 首先添加内容
       tempDiv.innerHTML = contentDiv.innerHTML;
-      
+
       // 删除所有带有 cm-active class 的元素
       tempDiv.querySelectorAll('.cm-active').forEach(el => el.classList.remove('cm-active'));
-      
+
       // 删除所有 edit-block-button 和 callout-fold 元素
       tempDiv.querySelectorAll('.edit-block-button, .callout-fold, .cm-widgetBuffer, .table-col-drag-handle, .cm-fold-indicator, .table-row-btn, .table-row-drag-handle, .table-col-btn, .table-row-drag-handle').forEach(el => el.remove());
-      
+
       // 构建完整的HTML，包括样式
       const cssStyles = `
         <style>
@@ -175,7 +172,7 @@ async function loadDocumentContent(
           }
         </style>
       `;
-      
+
       // 将div的HTML和样式组合起来
       el.innerHTML = `<div class="export-image-root markdown-source-view mod-cm6 is-live-preview">
         ${cssStyles}
@@ -185,13 +182,13 @@ async function loadDocumentContent(
       codeMirror.viewState.printing = false;
       codeMirror.measure();
     }
-    
+
     // 增加一个短暂延迟，确保页面渲染完成
     await delay(100);
-    
+
     return el;
   } catch (error) {
-    console.error("Error loading document content:", error);
+    console.error('Error loading document content:', error);
     return el;
   }
 }

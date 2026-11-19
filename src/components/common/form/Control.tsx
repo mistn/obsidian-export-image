@@ -1,8 +1,7 @@
-import React, { type FC, useEffect, useRef, useCallback, useState } from 'react';
+import React, { type FC, useEffect, useRef, useState } from 'react';
 import get from 'lodash/get';
 import set from 'lodash/set';
-import debounce from 'lodash/debounce';
-import { requestUrl, setIcon, type App, Modal } from 'obsidian';
+import { setIcon, type App, Modal } from 'obsidian';
 import { fileToBase64 } from '../../../utils';
 import L from '../../../L';
 import ImageSelectModal from '../imageSelectModal';
@@ -24,13 +23,6 @@ const Control: FC<{
     update(newSetting);
   };
 
-  const debouncedOnChange = useCallback(
-    debounce((value: string) => {
-      onChange(value);
-    }, 500),
-    [onChange]
-  );
-
   useEffect(() => {
     if (iconRef.current) {
       setIcon(iconRef.current, 'x');
@@ -46,7 +38,7 @@ const Control: FC<{
         setProcessedImageUrl(value);
       }
     };
-    processImage();
+    void processImage();
   }, [value, fieldSchema.type]);
 
   const upload = async () => {
@@ -178,7 +170,6 @@ const Control: FC<{
               {L.setting.watermark.image.src.select()}
             </button>
             <button onClick={() => {
-              const currentValue = value || '';
               const modal = new Modal(app);
               modal.titleEl.setText(L.imageUrl());
 

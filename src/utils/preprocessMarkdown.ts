@@ -1,11 +1,12 @@
-import { FrontMatterCache } from "obsidian";
+import type { FrontMatterCache } from 'obsidian';
 
 export function preprocessMarkdown(
   markdown: string,
   frontmatter: FrontMatterCache | undefined,
 ) {
-  if (frontmatter?.["excalidraw-plugin"]) {
-    return markdown.replace(/[ ]*excalidraw-plugin:.+[\n\r]*/, "");
+  if (frontmatter?.['excalidraw-plugin']) {
+    return markdown.replace(/[ ]*excalidraw-plugin:.+[\n\r]*/, '');
   }
+
   return markdown;
 }

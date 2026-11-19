@@ -28,4 +28,4 @@ export const FormProvider: React.FC<{
   );
 };
 
-export const useForm = () => useContext(FormContext); 
+export const useForm = () => useContext(FormContext);

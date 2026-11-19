@@ -19,7 +19,7 @@ export interface SettingItem<T = any> {
   show?: (settings: ISettings) => boolean;
 }
 
-export const createSettingConfig = async (app: App): Promise<SettingItem[]> => {
+export const createSettingConfig = async (_app: App): Promise<SettingItem[]> => {
   await delay(50);
   return [
     {

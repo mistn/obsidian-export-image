@@ -5,8 +5,8 @@ import {
   TFile,
   Notice,
   TFolder,
-  Editor,
-  MarkdownView,
+  type Editor,
+  type MarkdownView,
 } from 'obsidian';
 import L from './L';
 import { isMarkdownFile, getMetadata } from './utils';
@@ -146,7 +146,7 @@ export default class ExportImagePlugin extends Plugin {
           return false;
         }
         if (!checking) {
-          exportImage(
+          void exportImage(
             this.app,
             this.settings,
             selection,

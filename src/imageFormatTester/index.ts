@@ -1,4 +1,4 @@
-import {getMime} from 'src/utils';
+import { getMime } from 'src/utils';
 
 const copyCache: Partial<Record<FileFormat, boolean>> = {};
 

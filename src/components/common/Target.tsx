@@ -250,7 +250,6 @@ const Target = forwardRef<
                       <Metadata
                         name={name}
                         key={name}
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         value={frontmatter[name]}
                         type={metadataMap[lowerCase(name)]?.type || 'text'}
                       ></Metadata>
@@ -328,4 +327,3 @@ const Target = forwardRef<
 });
 
 export default Target;
-
