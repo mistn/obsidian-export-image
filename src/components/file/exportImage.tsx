@@ -115,11 +115,12 @@ async function loadDocumentContent(
 ) {
   try {
     const view = app.workspace.getActiveViewOfType(MarkdownView);
+    const contentDiv = view?.contentEl.querySelector('.cm-content.cm-lineWrapping');
 
-    // 只有在导出当前打开的文件时，才使用编辑器里的实时预览 DOM。
-    // 导出其他文件或选中内容时，必须使用传入的 markdown，
-    // 否则会把当前编辑器里另一篇笔记的内容导出去。
-    if (type !== 'file' || !view || view.file?.path !== file.path) {
+    // 只有在导出当前打开的文件、并且编辑器里存在 CM 内容时才使用实时预览 DOM。
+    // 阅读模式没有 .cm-content，导出其他文件或选中内容时也必须使用传入的 markdown，
+    // 否则会导出空白内容或当前编辑器里另一篇笔记的内容。
+    if (type !== 'file' || !view || !contentDiv || view.file?.path !== file.path) {
       el.empty();
       await MarkdownRenderer.render(
         app,
@@ -142,12 +143,11 @@ async function loadDocumentContent(
     await delay(500);
     view.editor.scrollTo(0, 0);
 
-    const contentDiv = view.contentEl.querySelector('.cm-content.cm-lineWrapping');
     const tempDiv = document.createElement('div');
     tempDiv.className = "markdown-source-view mod-cm6 is-live-preview";
     
     // 首先添加内容
-    tempDiv.innerHTML = contentDiv ? contentDiv.innerHTML : "";
+    tempDiv.innerHTML = contentDiv.innerHTML;
     
     // 删除所有带有 cm-active class 的元素
     tempDiv.querySelectorAll('.cm-active').forEach(el => el.classList.remove('cm-active'));
