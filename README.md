@@ -4,11 +4,11 @@
 
 </center>
 
-# Obsidian Export Image Plugin
+# Export Image (Fork)
 
 ![GitHub Release](https://img.shields.io/github/v/release/mistn/obsidian-export-image?include_prereleases&style=flat) ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/mistn/obsidian-export-image/total?style=flat)
 
-> **Maintenance fork.** The original [Export Image plugin](https://github.com/zhouhua/obsidian-export-image) by [Zhou Hua](https://github.com/zhouhua) has not been updated since April 2025. This fork keeps it compatible with current Obsidian versions, fixes long-standing bugs, and adds a few export options. All credit for the original plugin belongs to Zhou Hua.
+> **Maintenance fork.** The original [Export Image plugin](https://github.com/zhouhua/obsidian-export-image) by [Zhou Hua](https://github.com/zhouhua) has not been updated since April 2025. This fork keeps it compatible with current Obsidian versions, fixes long-standing bugs, and adds a few export options. All credit for the original plugin belongs to Zhou Hua. This fork is maintained by [miuarc](https://github.com/mistn).
 
 This Obsidian plugin can easily help you export any article as an image.
 
@@ -71,7 +71,7 @@ This fork is **not** in the community plugin directory. Install it with [BRAT](h
 1. Install and enable **BRAT** from Settings → Community plugins.
 2. Open the command palette and run `BRAT: Add a beta plugin for testing`.
 3. Enter `mistn/obsidian-export-image` and confirm.
-4. Enable **Export Image plugin** in Settings → Community plugins.
+4. Enable **Export Image (Fork)** in Settings → Community plugins.
 
 Manual install: download `main.js`, `manifest.json` and `styles.css` from the [latest release](https://github.com/mistn/obsidian-export-image/releases/latest) and put them in `<vault>/.obsidian/plugins/obsidian-export-image/`.
 

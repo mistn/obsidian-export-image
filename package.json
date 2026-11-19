@@ -12,7 +12,7 @@
     "lint-fix": "xo --fix"
   },
   "keywords": [],
-  "author": "",
+  "author": "miuarc",
   "license": "MIT",
   "devDependencies": {
     "@types/file-saver": "^2.0.7",
