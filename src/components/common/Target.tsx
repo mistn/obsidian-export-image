@@ -59,7 +59,11 @@ function ensureCalloutIcons(root: HTMLElement) {
 
     icon.replaceChildren();
     const type = callout.dataset.callout?.toLowerCase() || 'note';
-    setIcon(icon, calloutIcons[type] || 'info');
+    try {
+      setIcon(icon, calloutIcons[type] || 'info');
+    } catch {
+      // Keep the export working if a theme or Obsidian version lacks the icon.
+    }
   });
 }
 
