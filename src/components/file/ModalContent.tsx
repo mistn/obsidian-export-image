@@ -4,12 +4,13 @@ import React, {
 } from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { isCopiable } from 'src/imageFormatTester';
+import { formatAvailable } from 'src/settings';
 import { copy, save, saveAll } from '../../utils/capture';
 import L from '../../L';
 import Target, { type TargetRef } from '../common/Target';
 import FormItems from '../common/form/FormItems';
 
-const formSchema: FormSchema<ISettings> = [
+const createFormSchema = (): FormSchema<ISettings> => [
   {
     label: L.includingFilename(),
     path: 'showFilename',
@@ -64,6 +65,19 @@ const formSchema: FormSchema<ISettings> = [
       { text: "3x", value: '3x' },
       { text: "4x", value: '4x' },
     ],
+  },
+  {
+    path: 'format',
+    label: L.setting.format.title(),
+    desc: L.setting.format.description(),
+    type: 'select',
+    options: [
+      { text: L.setting.format.png0(), value: 'png0' },
+      { text: L.setting.format.png1(), value: 'png1' },
+      { text: L.setting.format.jpg(), value: 'jpg' },
+      { text: '.webp', value: 'webp' },
+      { text: L.setting.format.pdf(), value: 'pdf' },
+    ].filter(({ value }) => formatAvailable.contains(value as FileFormat)),
   },
   {
     path: 'split.height',
@@ -187,6 +201,7 @@ const ModalContent: FC<{
   app: App;
   metadataMap: Record<string, { type: MetadataType }>;
 }> = ({ markdownEl, settings, app, frontmatter, title, metadataMap }) => {
+  const formSchema = createFormSchema();
   const [formData, setFormData] = useState<ISettings>(settings);
   const [isGrabbing, setIsGrabbing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
