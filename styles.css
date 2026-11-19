@@ -28,6 +28,12 @@ If your plugin does not need CSS, delete this file.
   overflow: hidden;
 }
 
+.export-image-root .markdown-embed-content,
+.export-image-root .markdown-embed-content > .markdown-preview-view {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
 .export-image-preview-main {
   display: flex;
   margin: 20px 0;
