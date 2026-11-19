@@ -38,7 +38,6 @@ If your plugin does not need CSS, delete this file.
   display: flex;
   margin: 20px 0;
   flex-wrap: nowrap;
-  --line-height-tight: 20px;
 }
 
 .export-image-preview-left {
@@ -48,6 +47,7 @@ If your plugin does not need CSS, delete this file.
   font-size: 14px;
   line-height: 28px;
   box-sizing: border-box;
+  --line-height-tight: 20px;
 }
 
 .export-image-preview-right {
