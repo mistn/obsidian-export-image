@@ -49,15 +49,16 @@ export async function isCreatable(type: FileFormat): Promise<boolean> {
   const mime = getMime(type);
   return new Promise(resolve => {
     try {
-      canvas.toBlob(() => {
+      canvas.toBlob(blob => {
+        const available = blob !== null;
         if (type.includes('png')) {
-          createCache.png0 = true;
-          createCache.png1 = true;
+          createCache.png0 = available;
+          createCache.png1 = available;
         } else {
-          createCache[type] = true;
+          createCache[type] = available;
         }
 
-        resolve(true);
+        resolve(available);
       }, mime);
     } catch {
       if (type.includes('png')) {
