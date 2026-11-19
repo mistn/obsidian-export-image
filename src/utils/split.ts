@@ -74,7 +74,9 @@ export function calculateSplitPositions(
 ): SplitPosition[] {
   const { mode, height, overlap, totalHeight } = options;
   const positions: SplitPosition[] = [];
-  if (mode === 'hr' && elements) {
+  if (mode === 'none') {
+    positions.push({ startY: 0, height: totalHeight });
+  } else if (mode === 'hr' && elements) {
     // 按分隔线切割
     let lastY = 0;
     elements.forEach((el, index) => {
