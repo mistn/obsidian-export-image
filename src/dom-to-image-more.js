@@ -906,12 +906,36 @@
                 return;
               }
 
-              const encoder = new FileReader();
-              encoder.onloadend = function () {
-                resolve(encoder.result);
-              };
+              // A failed request can leave the response empty. Passing it to
+              // FileReader throws and leaves the whole export hanging.
+              const response = request.response;
+              if (!(response instanceof Blob)) {
+                if (placeholder) {
+                  resolve(placeholder);
+                } else {
+                  fail(
+                    `cannot fetch resource: ${url}, empty response`,
+                  );
+                }
 
-              encoder.readAsDataURL(request.response);
+                return;
+              }
+
+              const encoder = new FileReader();
+              encoder.addEventListener('load', function () {
+                resolve(encoder.result);
+              });
+              encoder.addEventListener('error', function () {
+                if (placeholder) {
+                  resolve(placeholder);
+                } else {
+                  fail(
+                    `cannot read resource: ${url}`,
+                  );
+                }
+              });
+
+              encoder.readAsDataURL(response);
             }
 
             function timeout() {
