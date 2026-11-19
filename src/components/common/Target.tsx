@@ -1,4 +1,4 @@
-import { type App, type FrontMatterCache } from 'obsidian';
+import { type App, type FrontMatterCache, setIcon } from 'obsidian';
 import React, {
   forwardRef, useEffect, useRef, useState, useImperativeHandle, useMemo,
 } from 'react';
@@ -14,6 +14,54 @@ const alignMap = {
   center: 'center',
   right: 'flex-end',
 };
+
+const calloutIcons: Record<string, string> = {
+  note: 'pencil',
+  abstract: 'clipboard-list',
+  summary: 'clipboard-list',
+  tldr: 'clipboard-list',
+  info: 'info',
+  todo: 'check-circle-2',
+  tip: 'flame',
+  hint: 'flame',
+  important: 'flame',
+  success: 'check',
+  check: 'check',
+  done: 'check',
+  question: 'help-circle',
+  help: 'help-circle',
+  faq: 'help-circle',
+  warning: 'alert-triangle',
+  caution: 'alert-triangle',
+  attention: 'alert-triangle',
+  failure: 'x',
+  fail: 'x',
+  missing: 'x',
+  danger: 'zap',
+  error: 'zap',
+  bug: 'bug',
+  example: 'list',
+  quote: 'quote',
+  cite: 'quote',
+};
+
+function ensureCalloutIcons(root: HTMLElement) {
+  root.querySelectorAll<HTMLElement>('.callout').forEach(callout => {
+    const icon = callout.querySelector<HTMLElement>('.callout-icon');
+    if (!icon) {
+      return;
+    }
+
+    const existing = icon.querySelector('svg, img');
+    if (existing && (existing.tagName.toLowerCase() !== 'svg' || existing.children.length > 0)) {
+      return;
+    }
+
+    icon.replaceChildren();
+    const type = callout.dataset.callout?.toLowerCase() || 'note';
+    setIcon(icon, calloutIcons[type] || 'info');
+  });
+}
 
 export interface TargetRef {
   element: HTMLElement;
@@ -111,6 +159,8 @@ const Target = forwardRef<
         }
       });
     }
+
+    ensureCalloutIcons(contentRef.current);
   }, [markdownEl]);
 
   useImperativeHandle(ref, () => ({
